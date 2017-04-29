@@ -29,16 +29,16 @@ http.listen(port, function () {
 
 var readLimiter = new RateLimit({
     windowMs: 5 * 60 * 1000,
-    delayAfter: 3,
+    delayAfter: 50,
     delayMs: 2 * 1000,
-    max: 3,
+    max: 100,
     message: "Too many read operation. You can read three times in 5 minute"
 });
 
 var createLimiter = new RateLimit({
     windowMs: 5 * 60 * 1000,
     delayAfter: 3,
-    max: 5,
+    max: 10,
     delayMs: 1 * 1000,
     message: "You can create only five cpaste item in 5 minute"
 });
