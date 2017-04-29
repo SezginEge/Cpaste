@@ -32,7 +32,7 @@ var readLimiter = new RateLimit({
     delayAfter: 50,
     delayMs: 2 * 1000,
     max: 100,
-    message: "Too many read operation. You can read three times in 5 minute"
+    message: "Too many read operation. You can read a hundred times in 5 minute"
 });
 
 var createLimiter = new RateLimit({
@@ -40,7 +40,7 @@ var createLimiter = new RateLimit({
     delayAfter: 3,
     max: 10,
     delayMs: 1 * 1000,
-    message: "You can create only five cpaste item in 5 minute"
+    message: "You can create only ten cpaste item in 5 minute"
 });
 
 app.get('/', function (req, res) {
