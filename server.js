@@ -8,17 +8,21 @@ var randomString = require('randomstring');
 var bodyParser = require("body-parser");
 var RateLimit = require('express-rate-limit');
 
+var port = process.env.port || 1337;
+
+app.enable('trust proxy');
 
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/wwwroot'));
 app.set('view engine', 'jade');
 
 const views = __dirname + "/wwwroot/views/";
+const expirationTime = 5 * 1000 * 60;
 
 app.set('views', views);
 
-http.listen(3000, function () {
-    console.log('listening on *:3000');
+http.listen(port, function () {
+    console.log('listening on *:' + port);
     console.log("Views path: " + views);
 });
 
