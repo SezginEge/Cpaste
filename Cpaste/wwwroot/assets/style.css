@@ -1,0 +1,42 @@
+﻿body {
+    width: 100%;
+    text-align: center;
+}
+
+#main {
+    margin: 15px auto;
+    background: white;
+    overflow: auto;
+    width: 750px;
+}
+
+#header {
+    background: white;
+}
+
+#footer {
+    background: white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+#title {
+    text-align: center;
+    font-size: 35px;
+}
+
+
+a {
+    color: black;
+}
+
+div.button {
+    border: 2px solid #333333;;
+    border-radius: 15px;
+    width: 100px;
+    cursor: pointer;
+    font-weight: bold;
+}
