@@ -13,10 +13,10 @@ var port = process.env.port || 1337;
 app.enable('trust proxy');
 
 app.use(bodyParser.json())
-app.use(express.static(__dirname + '/wwwroot'));
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 
-const views = __dirname + "/wwwroot/views/";
+const views = __dirname + "/views/";
 const expirationTime = 5 * 1000 * 60;
 
 app.set('views', views);
@@ -40,7 +40,7 @@ var createLimiter = new RateLimit({
     delayAfter: 3,
     max: 10,
     delayMs: 1 * 1000,
-    message: "You can create only ten cpaste item in 5 minute"
+    message: "You can create only 	 cpaste item in 5 minute"
 });
 
 app.get('/', function (req, res) {

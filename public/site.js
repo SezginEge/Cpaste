@@ -23,4 +23,3 @@ function create() {
 
     request.send(JSON.stringify(data));
 }
-
