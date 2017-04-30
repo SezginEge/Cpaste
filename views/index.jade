@@ -65,6 +65,12 @@
               a.fa.fa-whatsapp(href='whatsapp://send', data-text='Shared with you Cpaste item: http://cpaste.me/#{code}', data-href='http://cpaste.me/#{code}', onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'WhatsAppShare'});")
             br
             p * Whatsapp share only supported on phones
+        .col-md-3
+          if(exist)
+            .panel.panel-default
+              .panel-body
+                h4 Link: cpaste.me/#{code}
+                  b
     .footer-basic
     script(async='', src='https://www.google-analytics.com/analytics.js')
     script(src='libs/whatsapp-sharing/whatsapp-button.js')
