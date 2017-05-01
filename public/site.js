@@ -27,12 +27,15 @@ function create() {
 function copy() {
     var copyTextarea = document.getElementById('data');
     copyTextarea.select();
+    var successful = document.execCommand('copy');
+    var copyBtn = document.getElementById("copy");
+    copyBtn.innerText = "Copied";
+    copyBtn.classList.remove("btn-default");
+    copyBtn.classList.add("btn-success");
 
-    try {
-        var successful = document.execCommand('copy');
-        var msg = successful ? 'successful' : 'unsuccessful';
-        console.log('Copying text command was ' + msg);
-    } catch (err) {
-        console.log('Oops, unable to copy');
-    }
+    setTimeout(function () {
+        copyBtn.innerHTML = "Copy <i class='fa fa-clone'></i>"
+        copyBtn.classList.remove("btn-success");
+        copyBtn.classList.add("btn-default");
+    }, 3000);
 }
