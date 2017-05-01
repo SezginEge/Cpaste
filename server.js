@@ -7,6 +7,7 @@ var memcache = require('memory-cache');
 var randomString = require('randomstring');
 var bodyParser = require("body-parser");
 var RateLimit = require('express-rate-limit');
+var cors = require('cors');
 
 var port = process.env.port || 1337;
 
@@ -21,11 +22,12 @@ const expirationTime = 5 * 1000 * 60;
 
 app.set('views', views);
 
+app.options('*', cors())
+
 http.listen(port, function () {
     console.log('listening on *:' + port);
     console.log("Views path: " + views);
 });
-
 
 var readLimiter = new RateLimit({
     windowMs: 5 * 60 * 1000,

@@ -9,8 +9,8 @@ function create() {
     var request = new XMLHttpRequest();
 
     request.onload = function () {
-        var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
-        var data = JSON.parse(request.responseText); // Returned data, e.g., an HTML document.
+        var status = request.status; 
+        var data = JSON.parse(request.responseText);
 
         if (status == 200) {
             window.location.href = "/" + data.id;
