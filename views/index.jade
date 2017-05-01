@@ -21,7 +21,6 @@
       }
       .share-buttons {
       font-size: 24px;
-      text-align: center;
       }
       .share-buttons a {
       margin: 5px;
@@ -50,24 +49,23 @@
             .create-btn-container
               button.btn.btn-primary(style='width: 200px;', onclick='create()') Create
           else
-            textarea#data.form-control(rows='24') #{data}          
-            .share-buttons
-              // Email
-              a(href='mailto:?Subject=Cpaste&Body=http://cpaste.me/#{code}' onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'Mail'})")
-                i.fa.fa-envelope-o
-              // Facebook
-              a(href='http://www.facebook.com/sharer.php?u=http://cpaste.me/#{code}', target='_blank', onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'Facebook'})")
-                i.fa.fa-facebook
-              // Google+
-              a(href='https://plus.google.com/share?url=http://cpaste.me/#{code}', target='_blank', onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'Google+'})")
-                i.fa.fa-google
-            br
+            textarea#data.form-control(rows='24') #{data}
         .col-md-3
           if(exist)
             .panel.panel-default
               .panel-body
                 h4 Link: cpaste.me/#{code}
                   b
+                .share-buttons
+                  // Email
+                  a(href='mailto:?Subject=Cpaste&Body=http://cpaste.me/#{code}' onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'Mail'})")
+                    i.fa.fa-envelope-o
+                  // Facebook
+                  a(href='http://www.facebook.com/sharer.php?u=http://cpaste.me/#{code}', target='_blank', onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'Facebook'})")
+                    i.fa.fa-facebook
+                  // Google+
+                  a(href='https://plus.google.com/share?url=http://cpaste.me/#{code}', target='_blank', onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'Google+'})")
+                    i.fa.fa-google
     .footer-basic
     script(async='', src='https://www.google-analytics.com/analytics.js')
     script(src='site.js', type='text/javascript')
