@@ -26,13 +26,6 @@ app.set('views', views);
 
 app.options('*', cors())
 
-app.all('/new',function(req, res, next){
-    var uaPlatform = req.headers["UA-Platform"];
-    var type = req.header["Type"];
-
-    visitor.event("New", type, uaPlatform).send();
-});
-
 http.listen(port, function () {
     console.log('listening on *:' + port);
     console.log("Views path: " + views);
@@ -83,6 +76,11 @@ app.post("/new", createLimiter, function (req, res) {
             message: "Text cannot be empty"
         });
     }
+
+    var uaPlatform = req.headers["ua-platform"];
+    var type = req.headers["type"];
+
+    visitor.event("New", type, uaPlatform).send();
 
     var id = randomString.generate({
         length: 6
