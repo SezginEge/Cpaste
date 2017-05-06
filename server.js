@@ -8,8 +8,10 @@ var randomString = require('randomstring');
 var bodyParser = require("body-parser");
 var RateLimit = require('express-rate-limit');
 var cors = require('cors');
+var ua = require('universal-analytics');
 
 var port = process.env.port || 1337;
+var visitor = ua('UA-53768957-2', {https:true});
 
 app.enable('trust proxy');
 
@@ -23,6 +25,13 @@ const expirationTime = 5 * 1000 * 60;
 app.set('views', views);
 
 app.options('*', cors())
+
+app.all('/new',function(req, res, next){
+    var uaPlatform = req.headers["UA-Platform"];
+    var type = req.header["Type"];
+
+    visitor.event("New", type, uaPlatform).send();
+});
 
 http.listen(port, function () {
     console.log('listening on *:' + port);
@@ -42,7 +51,7 @@ var createLimiter = new RateLimit({
     delayAfter: 3,
     max: 10,
     delayMs: 1 * 1000,
-    message: "You can create only 	 cpaste item in 5 minute"
+    message: "You can create only 10 cpaste item in 5 minute"
 });
 
 app.get('/', function (req, res) {
