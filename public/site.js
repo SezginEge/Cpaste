@@ -20,6 +20,8 @@ function create() {
     request.open(method, uri);
 
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.setRequestHeader("UA-Platform",navigator.userAgent + ":" + navigator.platform);
+    request.setRequestHeader("Type","Browser");
 
     request.send(JSON.stringify(data));
 }
