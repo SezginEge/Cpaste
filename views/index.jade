@@ -45,7 +45,8 @@
           if(exist)
             .panel.panel-default
               .panel-body
-                h4 Link: cpaste.me/#{code}
+                h4 Link: 
+                  a(href='cpaste.me/#{code}') cpaste.me/#{code}
                   b
                 .share-buttons
                   // Email
@@ -57,6 +58,16 @@
                   // Google+
                   a(href='https://plus.google.com/share?url=http://cpaste.me/#{code}', target='_blank', onclick="ga('send', 'event', { eventCategory: 'Social', eventAction: 'Share', eventLabel: 'Google+'})")
                     i.fa.fa-google
+          else
+           .panel.panel-default
+             .panel-body
+               p The purpose of this tool is to simplifying copying text between devices for free.
+               p You can install plug-ins to take full advantage of the features of this tool. 
+               .plugins
+                 a(href='/', target='_blank')
+                   i.fa.fa-chrome(aria-hidden='true')
+                 a(href='/', target='_blank')
+                   i.fa.fa-firefox(aria-hidden='true')
         .col-md-6
           if(!exist)
             textarea#data.form-control(rows='24')
@@ -67,17 +78,7 @@
             textarea#data.form-control(rows='24') #{data}
             button#copy.btn.btn-default(onclick='copy()') Copy 
               i.fa.fa-clone
-        .col-md-3.hidden-xs
-          .panel.panel-default
-            .panel-body
-              p The purpose of this tool is to simplifying copying text between devices for free.
-              p You can install plug-ins to take full advantage of the features of this tool. 
-              .plugins
-                a(href='/', target='_blank')
-                  i.fa.fa-chrome(aria-hidden='true')
-                a(href='/', target='_blank')
-                  i.fa.fa-firefox(aria-hidden='true')
-    .footer-basic
+   .footer-basic
     script(async='', src='https://www.google-analytics.com/analytics.js')
     script(src='site.js', type='text/javascript')
     script.
