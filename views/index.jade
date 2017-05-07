@@ -76,9 +76,13 @@
             .create-btn-container
               button.btn.btn-primary(style='width: 200px;', onclick='create()') Create
           else
-            textarea#data.form-control(rows='24') #{data}
-            button#copy.btn.btn-default(onclick='copy()') Copy 
+            textarea#data.form-control(rows='24' value='#{data}') #{data}
+            button#copy.btn.btn-default(data-clipboard-target="#data") Copy 
               i.fa.fa-clone
    .footer-basic
+    script(src='libs/clipboardjs/clipboard.min.js')
     script(src='site.js', type='text/javascript')
+    if(exist)
+      script(type='text/javascript').
+        initClipboard();
   

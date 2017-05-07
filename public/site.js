@@ -26,18 +26,19 @@ function create() {
     request.send(JSON.stringify(data));
 }
 
-function copy() {
-    var copyTextarea = document.getElementById('data');
-    copyTextarea.select();
-    var successful = document.execCommand('copy');
-    var copyBtn = document.getElementById("copy");
-    copyBtn.innerText = "Copied";
-    copyBtn.classList.remove("btn-default");
-    copyBtn.classList.add("btn-success");
+function initClipboard(){
+    var clipboard = new Clipboard('#copy');
 
-    setTimeout(function () {
-        copyBtn.innerHTML = "Copy <i class='fa fa-clone'></i>"
-        copyBtn.classList.remove("btn-success");
-        copyBtn.classList.add("btn-default");
-    }, 3000);
+    clipboard.on('success', function(e) {
+        var copyBtn = document.getElementById("copy");
+        copyBtn.innerText = "Copied";    
+        copyBtn.classList.remove("btn-default");
+        copyBtn.classList.add("btn-success");
+        setTimeout(function () {
+            copyBtn.innerHTML = "Copy <i class='fa fa-clone'></i>"
+            copyBtn.classList.remove("btn-success");
+            copyBtn.classList.add("btn-default");
+        }, 3000);
+        e.clearSelection();
+    });
 }
