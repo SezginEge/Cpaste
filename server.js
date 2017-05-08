@@ -48,11 +48,15 @@ var createLimiter = new RateLimit({
 });
 
 app.get('/', function (req, res) {
+    visitor.pageview("/",'http://cpaste.me', "Index").send();
+    
     res.render('index');
 });
 
 app.get("/:id", readLimiter, function (req, res) {
     var id = req.params.id;
+    
+    visitor.pageview("/",'http://cpaste.me/' + id, "Code").send();
 
     var text = memcache.get(id);
     if (text) {
