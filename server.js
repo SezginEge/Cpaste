@@ -9,9 +9,10 @@ var bodyParser = require("body-parser");
 var RateLimit = require('express-rate-limit');
 var cors = require('cors');
 var ua = require('universal-analytics');
+var url = require('url');
 
 var port = process.env.port || 1337;
-var visitor = ua('UA-53768957-2', {https:true});
+var visitor = ua('UA-53768957-2', { https: true });
 
 app.enable('trust proxy');
 
@@ -47,16 +48,23 @@ var createLimiter = new RateLimit({
     message: "You can create only 10 cpaste item in 5 minute"
 });
 
+function fullUrl(req) {
+    return url.format({
+        protocol: req.protocol,
+        host: req.get('host'),
+        pathname: req.originalUrl
+    });
+}
+
 app.get('/', function (req, res) {
-    visitor.pageview("/",'http://cpaste.me', "Index").send();
-    
+    visitor.pageview("/", fullUrl(req), "Index").send();
+
     res.render('index');
 });
 
 app.get("/:id", readLimiter, function (req, res) {
     var id = req.params.id;
-    
-    visitor.pageview("/",'http://cpaste.me/' + id, "Code").send();
+
 
     var text = memcache.get(id);
     if (text) {
